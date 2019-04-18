@@ -1,4 +1,4 @@
-package fr.umlv.ir2.graphs;
+package fr.umlv.info2.graphs;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,8 +20,8 @@ public interface Graph {
 	public final static int minGraph = -1000;
 
 	/**
-	 * Le nombre d'arêtes du graphe.
-	 * @return le nombre d'arêtes du graphe
+	 * Le nombre d'arï¿½tes du graphe.
+	 * @return le nombre d'arï¿½tes du graphe
 	 */
 	int numberOfEdges();
 	
@@ -36,52 +36,52 @@ public interface Graph {
 	}
 
 	/**
-	 * Permet d'ajouter une arête orientée et pondérée au graphe.
-	 * @param i la première extrémité de l'arête
-	 * @param j la seconde extrémité de l'arête
-	 * @param value le poids de l'arête
+	 * Permet d'ajouter une arï¿½te orientï¿½e et pondï¿½rï¿½e au graphe.
+	 * @param i la premiï¿½re extrï¿½mitï¿½ de l'arï¿½te
+	 * @param j la seconde extrï¿½mitï¿½ de l'arï¿½te
+	 * @param value le poids de l'arï¿½te
 	 * @throws IndexOutOfBoundsException si i ou j n'est pas un sommet du graphe
-	 * @throws IllegalArgumentException si value vaut 0 ou si il existe déjà une arête entre i et j
+	 * @throws IllegalArgumentException si value vaut 0 ou si il existe dï¿½jï¿½ une arï¿½te entre i et j
 	 */
 	void addEdge(int i, int j, int value);
 
 	/**
-	 * Teste l'existence d'une arête donnée
-	 * @param i la première extrémité de l'arête
-	 * @param j la seconde extrémité de l'arête
-	 * @return true s'il existe une arête entre i et j; false sinon
+	 * Teste l'existence d'une arï¿½te donnï¿½e
+	 * @param i la premiï¿½re extrï¿½mitï¿½ de l'arï¿½te
+	 * @param j la seconde extrï¿½mitï¿½ de l'arï¿½te
+	 * @return true s'il existe une arï¿½te entre i et j; false sinon
 	 * @throws IndexOutOfBoundsException si i ou j n'est pas un sommet du graphe
 	 */
 	boolean isEdge(int i, int j);
 
 	/**
-	 * Renvoie le poids d'une arête donnée.
-	 * @param i la première extrémité de l'arête
-	 * @param j la seconde extrémité de l'arête
-	 * @return le poids de l'arête entre i et j
+	 * Renvoie le poids d'une arï¿½te donnï¿½e.
+	 * @param i la premiï¿½re extrï¿½mitï¿½ de l'arï¿½te
+	 * @param j la seconde extrï¿½mitï¿½ de l'arï¿½te
+	 * @return le poids de l'arï¿½te entre i et j
 	 * @throws IndexOutOfBoundsException si i ou j n'est pas un sommet du graphe
 	 */
 	int getWeight(int i, int j);
 
 	/**
-	 * Un itérateur sur tous les voisins d'un sommet donné.
-	 * @param i le sommet à partir duquel partent les arêtes fournies par l'itérateur
-	 * @return un itérateur sur tous les voisins du sommet i
+	 * Un itï¿½rateur sur tous les voisins d'un sommet donnï¿½.
+	 * @param i le sommet ï¿½ partir duquel partent les arï¿½tes fournies par l'itï¿½rateur
+	 * @return un itï¿½rateur sur tous les voisins du sommet i
 	 * @throws IndexOutOfBoundsException si i n'est pas un sommet du graphe
 	 */
 	Iterator<Edge> edgeIterator(int i);
 
 	/**
-	 * Effectue une action sur tous les voisins (les arêtes) d'un sommet donné.
-	 * @param i le sommet à partir duquel partent les arêtes traitées
-	 * @param consumer l'acction effectuée sur toutes les arêtes voisines de i
+	 * Effectue une action sur tous les voisins (les arï¿½tes) d'un sommet donnï¿½.
+	 * @param i le sommet ï¿½ partir duquel partent les arï¿½tes traitï¿½es
+	 * @param consumer l'acction effectuï¿½e sur toutes les arï¿½tes voisines de i
 	 * @throws IndexOutOfBoundsException si i n'est pas un sommet du graphe
 	 */
 	void forEachEdge(int i, Consumer<Edge> consumer);
 
 	/**
-	 * Fournit une réprésentaiuon du graphe au format .dot
-	 * @return une réprésentaiuon du graphe au format .dot
+	 * Fournit une rï¿½prï¿½sentaiuon du graphe au format .dot
+	 * @return une rï¿½prï¿½sentaiuon du graphe au format .dot
 	 */
 	default String toGraphviz() {
 		StringBuffer bf = new StringBuffer();
@@ -109,21 +109,21 @@ public interface Graph {
 	}
 
 	/**
-	 * Création d'un graphe aléatoire avec un nombre de sommets et d'arêtes fixé
+	 * Crï¿½ation d'un graphe alï¿½atoire avec un nombre de sommets et d'arï¿½tes fixï¿½
 	 * @param n nombre de sommets
-	 * @param nbEdges nombre d'arêtes
-	 * @param wmax poids maximal (en valeur absolue) sur les arêtes
-	 * @param factory une méthode qui étant donné un nombre de sommets n, fabrique et renvoie yun graphe vide à n sommets
-	 * @return un graphe aléatoire construit à l'aide de factory yant exactement n sommets et nbEdges arêtes
-	 * @throws IllegalArgumentException si le nombre d'arêtes est trop élevé par rapport au nombre de sommets ou si le poids max est nul
+	 * @param nbEdges nombre d'arï¿½tes
+	 * @param wmax poids maximal (en valeur absolue) sur les arï¿½tes
+	 * @param factory une mï¿½thode qui ï¿½tant donnï¿½ un nombre de sommets n, fabrique et renvoie yun graphe vide ï¿½ n sommets
+	 * @return un graphe alï¿½atoire construit ï¿½ l'aide de factory yant exactement n sommets et nbEdges arï¿½tes
+	 * @throws IllegalArgumentException si le nombre d'arï¿½tes est trop ï¿½levï¿½ par rapport au nombre de sommets ou si le poids max est nul
 	 */
 	public static Graph makeRandomGraph(int n, int nbEdges, int wmax, IntFunction<Graph> factory){
 		Graph g = factory.apply(n);
 		if (nbEdges > n * n) {
-			throw new IllegalArgumentException("Trop d'arêtes pour " + n + " sommets!");
+			throw new IllegalArgumentException("Trop d'arï¿½tes pour " + n + " sommets!");
 		}
 		if (wmax==0) {
-			throw new IllegalArgumentException("Le poids max doit être non nul");
+			throw new IllegalArgumentException("Le poids max doit ï¿½tre non nul");
 		}
 		Random r = new Random();
 		int v1, v2;
@@ -144,10 +144,10 @@ public interface Graph {
 	}
 
 	/**
-	 * Création d'un graphe à partir d'un fichier contenant le nombre de sommets et sa matrice
+	 * Crï¿½ation d'un graphe ï¿½ partir d'un fichier contenant le nombre de sommets et sa matrice
 	 * @param path le chemin du fichier contenant la matrice du graphe
-	 * @param factory une méthode qui étant donné un nombre de sommets n, fabrique et renvoie yun graphe vide à n sommets
-	 * @return un graphe construit à l'aide de factory et dont les arêtes sont données dans le fihier indiqué dans path
+	 * @param factory une mï¿½thode qui ï¿½tant donnï¿½ un nombre de sommets n, fabrique et renvoie yun graphe vide ï¿½ n sommets
+	 * @return un graphe construit ï¿½ l'aide de factory et dont les arï¿½tes sont donnï¿½es dans le fihier indiquï¿½ dans path
 	 * @throws IOException
 	 */
 	public static Graph makeGraphFromMatrixFile(Path path, IntFunction<Graph> factory) throws IOException {
@@ -171,7 +171,7 @@ public interface Graph {
 		return g;
 	}
 
-	// fabrique un graphe vide de la même taille.
+	// fabrique un graphe vide de la mï¿½me taille.
 	public Graph newGraphOfSameSize();
 
 	default public Graph transpose() {

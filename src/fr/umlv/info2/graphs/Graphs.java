@@ -1,4 +1,4 @@
-package fr.umlv.ir2.graphs;
+package fr.umlv.info2.graphs;
 
 public class Graphs {
 

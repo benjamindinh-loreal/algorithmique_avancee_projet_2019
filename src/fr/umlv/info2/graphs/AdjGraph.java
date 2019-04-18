@@ -1,4 +1,4 @@
-package fr.umlv.ir2.graphs;
+package fr.umlv.info2.graphs;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,7 +12,7 @@ public class AdjGraph implements Graph {
 
 	AdjGraph(int n, ArrayList<LinkedList<Edge>> adj) {
 		if (n <= 0) {
-			throw new IllegalArgumentException("Le nombre de sommets doit être strictement positif");
+			throw new IllegalArgumentException("Le nombre de sommets doit ï¿½tre strictement positif");
 		}
 		this.n = n;
 		this.adj = Objects.requireNonNull(adj);
@@ -48,10 +48,10 @@ public class AdjGraph implements Graph {
 	@Override
 	public void addEdge(int i, int j, int value) {
 		if (isEdge(i, j)) {
-			throw new IllegalArgumentException("Cette arête existe déjà : " + i + " -- " + j);
+			throw new IllegalArgumentException("Cette arï¿½te existe dï¿½jï¿½ : " + i + " -- " + j);
 		}
 		if (value == 0) {
-			throw new IllegalArgumentException("Vous ne pouvez pas ajouter une arête de poids nul");
+			throw new IllegalArgumentException("Vous ne pouvez pas ajouter une arï¿½te de poids nul");
 		}
 		adj.get(i).add(new Edge(i, j, value));
 		nbEdges++;

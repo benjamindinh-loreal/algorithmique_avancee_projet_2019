@@ -1,4 +1,4 @@
-package fr.umlv.ir2.graphs;
+package fr.umlv.info2.graphs;
 
 import java.util.Arrays;
 
@@ -12,7 +12,7 @@ public class ShortestPathFromAllVertices {
 	}
 
 	public void printShortestPath(int source, int destination) {
-		// à faire
+		// ï¿½ faire
 	}
 
 	public void printShortestPaths() {

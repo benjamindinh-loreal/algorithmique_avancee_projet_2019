@@ -9,6 +9,7 @@ public class AdjGraph implements Graph {
 	private final ArrayList<LinkedList<Edge>> adj;
 	private final int n;
 	private int nbEdges;
+	private Long[][] coordinates ;
 
 	AdjGraph(int n, ArrayList<LinkedList<Edge>> adj) {
 		if (n <= 0) {

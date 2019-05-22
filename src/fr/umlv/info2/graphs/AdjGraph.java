@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class AdjGraph implements Graph {
+
 	private final ArrayList<LinkedList<Edge>> adj;
 	private final int n;
 	private int nbEdges;
@@ -13,7 +14,7 @@ public class AdjGraph implements Graph {
 
 	AdjGraph(int n, ArrayList<LinkedList<Edge>> adj) {
 		if (n <= 0) {
-			throw new IllegalArgumentException("Le nombre de sommets doit �tre strictement positif");
+			throw new IllegalArgumentException("Le nombre de sommets doit etre strictement positif");
 		}
 		this.n = n;
 		this.adj = Objects.requireNonNull(adj);
@@ -49,7 +50,7 @@ public class AdjGraph implements Graph {
 	@Override
 	public void addEdge(int i, int j, int value) {
 		if (isEdge(i, j)) {
-			throw new IllegalArgumentException("Cette ar�te existe d�j� : " + i + " -- " + j);
+			return ;
 		}
 		if (value == 0) {
 			throw new IllegalArgumentException("Vous ne pouvez pas ajouter une ar�te de poids nul");

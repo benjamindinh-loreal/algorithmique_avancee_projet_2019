@@ -81,14 +81,8 @@ public class Astar {
 	    				distance[edge.getEnd()] = distance[edge.getStart()] + edge.getValue();
 	    				pi[edge.getEnd()] = edge.getStart();
 	    				Node sn = saveNode.remove(current);
-	    				var ite = f.iterator();
-	    				
-	    				while(ite.hasNext()) {
-	    					Node node = ite.next();
-	    					if(node == sn)
-	    						ite.remove();
-	    				}
-	    				
+	    				f.remove(sn);
+	    					    				
 	    				f.add(new Node(edge.getEnd(),distance[edge.getEnd()] + heuristique[edge.getEnd()]));
 	    				saveNode.put(edge.getEnd(), new Node(edge.getEnd(),distance[edge.getEnd()] + heuristique[edge.getEnd()]));
 	    				

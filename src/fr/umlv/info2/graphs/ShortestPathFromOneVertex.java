@@ -16,23 +16,26 @@ public class ShortestPathFromOneVertex {
 
 	public void printShortestPathToRec(int destination) {
 		for(int i = 0; i < pi.length; i++) {
+			
 			if(pi[i] == destination) {
+				System.out.print(source+" --> "+ destination);
 				System.out.print(" --> " +i);
 				printShortestPathToRec(i);
-				return;
+				
 			}
+			System.out.print("\n");
 		}
 	}
 	
 	public void printShortestPathTo(int destination) {
 	
-		for(int i = 0; i < d.length; i++) {
+		
 			if(pi[destination] == source) {
-				System.out.print(source+" --> "+ destination);
+				
 				printShortestPathToRec(destination);
 				System.out.print("\n");
 			}
-		}
+		
 		
 	}
 

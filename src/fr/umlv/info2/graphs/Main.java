@@ -38,11 +38,14 @@ public class Main {
 				g.addEdge(edge.getStart(), edge.getEnd(),edge.getValue());
 			}
 			
-			var astar = new Astar(g, coordinates, 1, 2) ;
 			
-			/*Graph graph = AdjGraph.makeGraphFromMatrixFile(path); System.out.println(graph);
+			Graph graph = AdjGraph.makeGraphFromMatrixFile(Paths.get("ressources/td4_exo7_3.mat")); System.out.println(graph);
+			
 			ShortestPathFromOneVertex sp;
-			System.out.println("Bellman-Ford:"); sp = Graphs.bellmanFord(graph, 0); System.out.println(sp.toSting());// sp.printShortestPaths(); System.out.println("\nDijkstra:"); sp = Graphs.dijkstra(graph, 0); System.out.println(sp); sp.printShortestPaths();*/
+			sp= Graphs.dijkstra(graph, 0);
+			System.out.println(sp);
+			sp.printShortestPaths();
+			/*System.out.println("Bellman-Ford:"); sp = Graphs.bellmanFord(graph, 0); System.out.println(sp.toSting());// sp.printShortestPaths(); System.out.println("\nDijkstra:"); sp = Graphs.dijkstra(graph, 0); System.out.println(sp); sp.printShortestPaths();*/
 			
 			//String toDot = graph.toGraphviz();
 			//System.out.println(toDot);

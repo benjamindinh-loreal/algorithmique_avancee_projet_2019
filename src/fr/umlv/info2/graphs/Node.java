@@ -2,14 +2,18 @@ package fr.umlv.info2.graphs;
 
 public class Node implements Comparable<Node> {
 	private final int id;
-	private final int distance;
+	private final float distance;
 
-	public Node(int id, int distance) {
+	public Node(int id, float f) {
 		this.id = id;
-		this.distance = distance;
+		this.distance = f;
 	}
 
-	public int getDistance() {
+	public int getId() {
+		return id;
+	}
+	
+	public float getDistance() {
 		return distance;
 	}
 

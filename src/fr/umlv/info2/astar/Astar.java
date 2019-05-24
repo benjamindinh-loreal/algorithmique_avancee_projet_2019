@@ -10,14 +10,14 @@ import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import fr.umlv.info2.graphs.Edge;
-import fr.umlv.info2.graphs.Graph;
-import fr.umlv.info2.graphs.Node;
+import fr.umlv.info2.graphs.*;
 import fr.umlv.info2.parser.Parser;
 
 public class Astar {
 	
 	private long[][] coordinate;
+	private ArrayList<Integer> border = new ArrayList<Integer>();
+	private ArrayList<Integer> computed = new ArrayList<Integer>();
 		
 	private void initH(float[] h, int to) {
 		
@@ -34,44 +34,79 @@ public class Astar {
 		return null ;
 	}
 	
-	public Astar(Graph graph, long[][] coordinate , int source, int dest) {
+	public ShortestPathFromOneVertex Astar(Graph graph, long[][] coordinate , int source, int dest) {
 		
 		this.coordinate = coordinate ;
-		
 		Node[][] voisins = new Node[graph.numberOfVertices()][2] ;
-		
-		HashMap<Integer, Node> saveNode = new HashMap<>() ;
-		
 		int[] pi = new int[graph.numberOfVertices()] ;
 		int[] distance = new int[graph.numberOfVertices()] ;
 		float[] heuristique = new float[graph.numberOfVertices()] ;
-		
 		PriorityQueue<Node> f = new PriorityQueue<Node>(graph.numberOfVertices()) ;
+		HashMap<Integer, Node> saveNode = new HashMap<>() ;
 		
 		IntStream.range(0, graph.numberOfVertices()).forEach((index)->{
 			// Init distance
-			if(index == 0)
+			if(index == 0) {
 				distance[index] = 0 ;
-			else
+				pi[source] = source;
+			}
+			else {
 				distance[index] = Integer.MAX_VALUE ;
-			
+				pi[source] = -1;
+			}
 			//Init heuristique
 			initH(heuristique,dest);
 		});
 		
+		border.add(source);
+		computed.add(source);
+		f.add(new Node(source,distance[source]));
 		
 		
-		
-		
-		//border.remove(min);
-		
-		Set border = new HashSet<>();
-		Set computed = new HashSet<>();
-		
-		//IntStreamm
-		
+		while(!border.isEmpty()) {
+			
+			var min = f.poll();
+			int current = border.remove(min.getId());
+			
+			if(current == dest) {
+				break;
+			}
+			
+			computed.add(current);
+			saveNode.put(source, new Node(source,distance[source]));
+			
+			graph.forEachEdge(current, (edge) ->{
+				if(computed.contains(edge.getEnd())) {
+	    			if(distance[edge.getStart()] + edge.getValue() < distance[edge.getEnd()]) {
+	    				distance[edge.getEnd()] = distance[edge.getStart()] + edge.getValue();
+	    				pi[edge.getEnd()] = edge.getStart();
+	    				Node sn = saveNode.remove(current);
+	    				var ite = f.iterator();
+	    				
+	    				while(ite.hasNext()) {
+	    					Node node = ite.next();
+	    					if(node == sn)
+	    						ite.remove();
+	    				}
+	    				
+	    				f.add(new Node(edge.getEnd(),distance[edge.getEnd()] + heuristique[edge.getEnd()]));
+	    				saveNode.put(edge.getEnd(), new Node(edge.getEnd(),distance[edge.getEnd()] + heuristique[edge.getEnd()]));
+	    				
+	    				if(!border.contains(edge.getEnd()))
+	    					border.add(edge.getEnd());
+	    			}
+				}
+    			else {
+    				distance[edge.getEnd()] = distance[edge.getStart()] + edge.getValue();
+    				f.add(new Node(edge.getEnd(),distance[edge.getEnd()] + heuristique[edge.getEnd()]));
+    				border.add(edge.getEnd());
+    				computed.add(edge.getEnd());
+    			}
+    		});
+			
+		}
+		return new ShortestPathFromOneVertex(source, distance, pi);
 		
 		
 	}
-	
 }
